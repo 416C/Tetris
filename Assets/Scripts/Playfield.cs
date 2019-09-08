@@ -34,7 +34,7 @@ public class Playfield : MonoBehaviour
     {
         for (int x = 0; x < width; x++)
         {
-            Destroy(grid[x,y]);
+            Destroy(grid[x,y].gameObject);
             grid[x, y] = null;
         }
     }
