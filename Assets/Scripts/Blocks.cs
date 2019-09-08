@@ -17,7 +17,7 @@ public class Blocks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown("a"))
         {
             Debug.Log("Left Key Pressed");
             //modify position
@@ -31,7 +31,7 @@ public class Blocks : MonoBehaviour
                 transform.position += new Vector3(1, 0, 0);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown("d"))
         {
             Debug.Log("Right Key Pressed");
             //modify position
@@ -45,7 +45,7 @@ public class Blocks : MonoBehaviour
                 transform.position += new Vector3(-1, 0, 0);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown("w"))
         {
             Debug.Log("Up Key Pressed");
             //modify position
@@ -60,7 +60,7 @@ public class Blocks : MonoBehaviour
                 transform.Rotate(0, 0, 90);
             }
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastfall >= 1)
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown("s") || Time.time - lastfall >= 1)
             {
                 transform.position += new Vector3(0, -1, 0);
 
