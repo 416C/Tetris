@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Blocks : MonoBehaviour
 {
+    float lastfall = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (!isValidPos())
+        {
+            Debug.Log("GameOver");
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -58,7 +63,7 @@ public class Blocks : MonoBehaviour
                 transform.Rotate(0, 0, 90);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastfall >= 1)
         {
             transform.position += new Vector3(0, -1, 0);
 
@@ -73,6 +78,7 @@ public class Blocks : MonoBehaviour
                 FindObjectOfType<Spawner>().spawnerNext();
                 enabled = false;
             }
+            lastfall = Time.time;
         }
         
     }
