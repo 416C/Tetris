@@ -4,15 +4,92 @@ using UnityEngine;
 
 public class Blocks : MonoBehaviour
 {
+<<<<<<< HEAD
     // Start is called before the first frame update
     void Start()
     {
         
+=======
+    float lastfall = 0;
+    // Start is called before the first frame update
+    void Start()
+    {
+        if (!isValidPos())
+        {
+            Debug.Log("GameOver");
+            Destroy(gameObject);
+        }
+>>>>>>> features
     }
 
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
+=======
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            Debug.Log("Left Key Pressed");
+            //modify position
+            transform.position += new Vector3(-1, 0, 0);
+
+            if (isValidPos())
+            {
+                updateGrid();
+            }
+            else
+            {
+                transform.position += new Vector3(1, 0, 0);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            Debug.Log("Right Key Pressed");
+            //modify position
+            transform.position += new Vector3(1, 0, 0);
+
+            if (isValidPos())
+            {
+                updateGrid();
+            }
+            else
+            {
+                transform.position += new Vector3(-1, 0, 0);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Debug.Log("Up Key Pressed");
+            //modify position
+            transform.Rotate(0, 0, -90);
+
+            if (isValidPos())
+            {
+                updateGrid();
+            }
+            else
+            {
+                transform.Rotate(0, 0, 90);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastfall >= 1)
+        {
+            transform.position += new Vector3(0, -1, 0);
+
+            if (isValidPos())
+            {
+                updateGrid();
+            }
+            else
+            {
+                transform.position += new Vector3(0, 1, 0);
+                Playfield.deleteAllRows();
+                FindObjectOfType<Spawner>().spawnerNext();
+                enabled = false;
+            }
+            lastfall = Time.time;
+        }
+>>>>>>> features
         
     }
 
