@@ -4,68 +4,61 @@ using UnityEngine;
 
 public class Blocks : MonoBehaviour
 {
-    // Start is called before the first frame update
+    float lastfall = 0;
     void Start()
     {
-
-        float lastfall = 0;
-        // Start is called before the first frame update
-        void Start()
+        if (!isValidPos())
         {
-            if (!isValidPos())
+            Debug.Log("GameOver");
+            Destroy(gameObject);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            Debug.Log("Left Key Pressed");
+            //modify position
+            transform.position += new Vector3(-1, 0, 0);
+            if (isValidPos())
             {
-                Debug.Log("GameOver");
-                Destroy(gameObject);
+                updateGrid();
+            }
+            else
+            {
+                transform.position += new Vector3(1, 0, 0);
             }
         }
-
-        // Update is called once per frame
-        void Update()
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            Debug.Log("Right Key Pressed");
+            //modify position
+            transform.position += new Vector3(1, 0, 0);
+            if (isValidPos())
             {
-                Debug.Log("Left Key Pressed");
-                //modify position
+                updateGrid();
+            }
+            else
+            {
                 transform.position += new Vector3(-1, 0, 0);
-
-                if (isValidPos())
-                {
-                    updateGrid();
-                }
-                else
-                {
-                    transform.position += new Vector3(1, 0, 0);
-                }
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                Debug.Log("Right Key Pressed");
-                //modify position
-                transform.position += new Vector3(1, 0, 0);
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Debug.Log("Up Key Pressed");
+            //modify position
+            transform.Rotate(0, 0, -90);
 
-                if (isValidPos())
-                {
-                    updateGrid();
-                }
-                else
-                {
-                    transform.position += new Vector3(-1, 0, 0);
-                }
+            if (isValidPos())
+            {
+                updateGrid();
             }
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            else
             {
-                Debug.Log("Up Key Pressed");
-                //modify position
-                transform.Rotate(0, 0, -90);
-
-                if (isValidPos())
-                {
-                    updateGrid();
-                }
-                else
-                {
-                    transform.Rotate(0, 0, 90);
-                }
+                transform.Rotate(0, 0, 90);
+            }
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastfall >= 1)
             {
@@ -134,5 +127,3 @@ public class Blocks : MonoBehaviour
             }
         }
     }
-
-}
